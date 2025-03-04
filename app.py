@@ -5,17 +5,15 @@ from keras.models import load_model
 import matplotlib.pyplot as plt
 import os
 
-# Load all pre-trained LSTM models into memory
-model_dir = "lstm_models_h5"   # Directory where models are saved
-ticker_models = {}
+# In your Streamlit app:
+model_dir = "lstm_models"  # Directly use the directory with .h5 models
 
-# Load models for all tickers
+# Load models
 for filename in os.listdir(model_dir):
-    if filename.endswith("_lstm_model.h5"):
-        ticker = filename.split("_")[0]  # Extract ticker name from filename
+    if filename.endswith("_lstm_model.h5"):  # Look for .h5 files
+        ticker = filename.split("_")[0]
         model_path = os.path.join(model_dir, filename)
         ticker_models[ticker] = load_model(model_path)
-        print(f"Loaded model for {ticker} successfully.")
 
 # Streamlit app title with emoji
 st.title("📈 Nigerian Stock Price Predictor App 📊")
