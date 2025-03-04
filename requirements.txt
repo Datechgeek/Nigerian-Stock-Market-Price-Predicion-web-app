@@ -1,9 +1,5 @@
-streamlit==1.26.0
-pandas==2.0.3
-numpy==1.24.3
+tensorflow==2.12.0
+streamlit==1.25.0
+pandas==1.5.3
+numpy==1.23.5
 matplotlib==3.7.1
-scikit-learn==1.3.0
-tensorflow==2.14.0  # Stable version that supports .h5 format
-h5py==3.9.0        # Required for handling .h5 files
-plotly==5.16.1     # Optional: For interactive plots
-gdown==4.7.1       # Optional: For downloading models from Google Drive
