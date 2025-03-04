@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 import os
 
@@ -10,11 +10,19 @@ model_dir = "lstm_models"  # Directly use the directory with .h5 models
 
 # Load models
 for filename in os.listdir(model_dir):
-    if filename.endswith("_lstm_model.h5"):  # Look for .h5 files
-        ticker = filename.split("_")[0]
-        model_path = os.path.join(model_dir, filename)
-        ticker_models[ticker] = load_model(model_path)
-
+    if filename.endswith(".h5"):
+        try:
+            ticker = filename.split("_")[0]
+            model_path = os.path.join(model_dir, filename)
+            ticker_models[ticker] = load_model(
+                model_path,
+                compile=False,  # Disable compilation
+                custom_objects={'InputLayer': None}  # Bypass input layer issues
+            )
+            print(f"Successfully loaded {ticker} model")
+        except Exception as e:
+            st.error(f"Error loading {filename}: {str(e)}")
+            
 # Streamlit app title with emoji
 st.title("📈 Nigerian Stock Price Predictor App 📊")
 
