@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import os
 
 # Load all pre-trained LSTM models into memory
-model_dir = "lstm_models"  # Directory where models are saved
+model_dir = "lstm_models_h5"   # Directory where models are saved
 ticker_models = {}
 
 # Load models for all tickers
 for filename in os.listdir(model_dir):
-    if filename.endswith("_lstm_model.keras"):
+    if filename.endswith("_lstm_model.h5"):
         ticker = filename.split("_")[0]  # Extract ticker name from filename
         model_path = os.path.join(model_dir, filename)
         ticker_models[ticker] = load_model(model_path)
