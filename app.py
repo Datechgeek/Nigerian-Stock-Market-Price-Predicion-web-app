@@ -35,7 +35,7 @@ if ticker_models:
     # Dropdown menu
     selected_stock = st.selectbox(
         "Select a Stock Ticker:", 
-        options=list(ticker_models.keys())
+        options=list(ticker_models.keys()))
     
     # Forecast days input
     forecast_days = st.number_input(
