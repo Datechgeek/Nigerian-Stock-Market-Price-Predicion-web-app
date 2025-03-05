@@ -5,28 +5,21 @@ import os
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import InputLayer
+import joblib
 
-# Initialize ticker_models dictionary
+# Load all pre-trained LSTM models into memory
+model_dir = "lstm_last_models"
 ticker_models = {}
 
-# Load models with error handling
-model_dir = "lstm_models"
 if os.path.exists(model_dir):
     for filename in os.listdir(model_dir):
-        if filename.endswith(".h5"):
-            try:
-                ticker = filename.split("_")[0]
-                model_path = os.path.join(model_dir, filename)
-                ticker_models[ticker] = load_model(
-                    model_path,
-                    compile=False,
-                    custom_objects={'InputLayer': None}
-                )
-                st.success(f"✅ Successfully loaded {ticker} model")
-            except Exception as e:
-                st.error(f"❌ Error loading {filename}: {str(e)}")
+        if filename.endswith("_model.joblib"):
+            ticker = filename.split("_")[0]  # Extract ticker name from filename
+            model_path = os.path.join(model_dir, filename)
+            ticker_models[ticker] = joblib.load(model_path)  # Load the model
+            print(f"Loaded {ticker} model successfully.")
 else:
-    st.error(f"🚨 Model directory '{model_dir}' not found!")
+    st.error("No models found. Please ensure the 'lstm_last_models' directory exists.")
 
 # Streamlit app title
 st.title("📈 Nigerian Stock Price Predictor App 📊")
