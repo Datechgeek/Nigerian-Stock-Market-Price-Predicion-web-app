@@ -1,6 +1,7 @@
-tensorflow==2.15.0
-numpy==1.23.5
-pandas==2.0.3
-matplotlib==3.7.2
-protobuf==3.20.3
-streamlit==1.29.0
+streamlit==1.26.0  # For building the web app
+pandas==2.0.3      # For data manipulation and analysis
+numpy==1.24.3      # For numerical operations
+matplotlib==3.7.1  # For static plotting
+tensorflow==2.14.0 # Stable version that supports loading .h5 or .keras models
+joblib==1.3.2      # For loading serialized models (if using joblib)
+scikit-learn==1.3.0 # Required if you're using any preprocessing utilities from sklearn
