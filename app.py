@@ -8,7 +8,7 @@ from tensorflow.keras.layers import InputLayer
 import joblib
 
 # Load all pre-trained LSTM models into memory
-model_dir = "lstm_last_models"
+model_dir = "lstm_final_models"
 ticker_models = {}
 
 if os.path.exists(model_dir):
