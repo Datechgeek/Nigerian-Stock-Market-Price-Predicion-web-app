@@ -4,6 +4,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
+from tensorflow.keras.layers import InputLayer
 
 # Initialize ticker_models dictionary
 ticker_models = {}
